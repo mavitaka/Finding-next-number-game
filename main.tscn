@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0ybhvtbpwvlx"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_g7ukr"]
+[ext_resource type="PackedScene" uid="uid://b2qi81naa8inq" path="res://numbers.tscn" id="2_eoc8n"]
+[ext_resource type="PackedScene" uid="uid://csrju4he0u8pe" path="res://hud.tscn" id="3_p7gxg"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_g7ukr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.960784, 0.870588, 0.701961, 1)
+
+[node name="HUD" parent="." instance=ExtResource("3_p7gxg")]
+
+[node name="numbers" parent="." instance=ExtResource("2_eoc8n")]
+
+[connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="win" from="numbers" to="." method="game_over"]
